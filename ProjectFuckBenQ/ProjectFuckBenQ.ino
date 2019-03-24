@@ -9,7 +9,7 @@ int ColorTemperature = 5;
 int LightStrength = 5;
 
 void setup() {
-  pinMode(FunctionStatePin, INPUT);
+  pinMode(FunctionStatePin, INPUT_PULLUP);
   Serial.begin(115200);
   Serial.println("Basic Encoder Test:");
 }
@@ -19,9 +19,13 @@ void loop() {
   if (newPosition > oldPosition) {
     oldPosition = newPosition;
     if (digitalRead(FunctionStatePin) == HIGH) {
-      ColorTemperature++;
+      if (ColorTemperature < 10) {
+        ColorTemperature++;
+      }
     } else {
-      LightStrength++;
+      if (LightStrength < 10) {
+        LightStrength++;
+      }
     }
     Serial.print(ColorTemperature);
     Serial.print("|");
@@ -29,9 +33,13 @@ void loop() {
   }else if (newPosition < oldPosition) {
     oldPosition = newPosition;
     if (digitalRead(FunctionStatePin) == HIGH) {
-      ColorTemperature--;
+      if (ColorTemperature > 0) {
+        ColorTemperature--;
+      }
     } else {
-      LightStrength--;
+      if (LightStrength > 0) {
+        LightStrength--;
+      }
     }
     Serial.print(ColorTemperature);
     Serial.print("|");
