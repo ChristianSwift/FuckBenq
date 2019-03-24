@@ -19,30 +19,32 @@ void loop() {
   if (newPosition > oldPosition) {
     oldPosition = newPosition;
     if (digitalRead(FunctionStatePin) == HIGH) {
-      if (ColorTemperature < 10) {
-        ColorTemperature++;
-      }
-    } else {
       if (LightStrength < 10) {
         LightStrength++;
       }
+    } else {
+      if (ColorTemperature < 10) {
+        ColorTemperature++;
+      }
     }
+    Serial.print("亮度:");
+    Serial.print(LightStrength);
+    Serial.print(" | 混光:");
     Serial.print(ColorTemperature);
-    Serial.print("|");
-    Serial.println(LightStrength);
   }else if (newPosition < oldPosition) {
     oldPosition = newPosition;
     if (digitalRead(FunctionStatePin) == HIGH) {
-      if (ColorTemperature > 0) {
-        ColorTemperature--;
-      }
-    } else {
       if (LightStrength > 0) {
         LightStrength--;
       }
+    } else {
+      if (ColorTemperature > 0) {
+        ColorTemperature--;
+      }
     }
+    Serial.print("亮度:");
+    Serial.print(LightStrength);
+    Serial.print(" | 混光:");
     Serial.print(ColorTemperature);
-    Serial.print("|");
-    Serial.println(LightStrength);
   }
 }
