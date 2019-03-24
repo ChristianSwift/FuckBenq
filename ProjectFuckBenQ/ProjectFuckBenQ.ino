@@ -30,7 +30,7 @@ void loop() {
     Serial.print("亮度:");
     Serial.print(LightStrength);
     Serial.print(" | 混光:");
-    Serial.print(ColorTemperature);
+    Serial.println(ColorTemperature);
   }else if (newPosition < oldPosition) {
     oldPosition = newPosition;
     if (digitalRead(FunctionStatePin) == HIGH) {
@@ -45,6 +45,6 @@ void loop() {
     Serial.print("亮度:");
     Serial.print(LightStrength);
     Serial.print(" | 混光:");
-    Serial.print(ColorTemperature);
+    Serial.println(ColorTemperature);
   }
 }
